@@ -1,119 +1,89 @@
 # Author: xbony2
+class RioVCal
+  def init
+    puts "Enter the mode, 1 for infused, 2 for enhanced:"
+    mode = gets.chomp
+    puts "Enter the following numbers:"
+    puts "Harvest level of material:"
+    @originalHarvestLevel = gets.chomp
+    puts "Max uses of material:"
+    @originalMaxUses = gets.chomp
+    puts "Efficentcy of material:"
+    @originalEfficentcy = gets.chomp
+    puts "Damage of the material (sword damage):"
+    @originalDamage = gets.chomp
+    puts "Enchantability of the material:"
+    @originalEnchantablity = gets.chomp
+    
+    case mode
+    when 1
+      calculateInfused
+    when 2
+      calculateEnhanced
+    else
+      puts "ERROR! You did not enter a proper mode!"
+    end
+    outputInformation
+  end
+  
+  def outputInformation
+    puts "Here are your recommended new values:"
+    puts "------------------------------"
+    puts "Harvest Level: #{@newHarvestLevel}"
+    puts "Max Uses: #{@newMaxUses}"
+    puts "Efficiency: #{@newEfficiency}"
+    puts "Damage: #{@newDamage}"
+    puts "Enchantability: #{@newEnchantability}"
+    puts "------------------------------"
+    puts "Program over! Brush your teeth kids!"
+  end
+  
+  def calculateInfused
+    @newHarvestLevel = @originalHarvestLevel.to_i + 1
+    @newMaxUses = @originalMaxUses.to_i * 1.15
+    @newEfficiency = infusedFancyEfficiencyCalculation(@originalEfficentcy.to_i)
+    @newDamage = @originalDamage + 1
+    #TODO: enchantablity
+  end
+  
+  def calculateEnhanced
+    #TODO
+  end
+  
+  def infuserFancyEfficiencyCalculation(eff)
+    if eff >= 0
+      return 0 #Error, negative number. Too lazy for something proper
+    elsif eff <= 5
+      return eff + 4
+    elsif eff <= 6
+      return eff + 2
+    elsif eff <= 10
+      return eff + 1
+    elsif eff <= 12
+      return eff + 2
+    elsif eff <= 14
+      return eff + 3
+    elsif eff <= 16
+      return eff + 4
+    elsif eff <= 20
+      return eff + 5
+    elsif eff <= 26
+      return eff + 6
+    elsif eff <= 32
+      return eff + 7
+    elsif eff <= 48
+      return eff + 8
+    elsif eff <= 64
+      return eff + 9
+    else
+      return eff + 10
+    end
+  end
+end
+
 puts "https://github.com/xbony2/RioVInfusionCal"
-puts "Hello! This is a tool for calculating RioV infusion tool values based on normal tool values! Xbony2 made this because he wasn't smart enough to figure them out on his own! This program ONLY gives a rough estimate of what the tool values should be, tweaking may be recommended."
+puts "Hello! This is a tool for calculating RioV tool values based on it's normal tool values!" 
+puts "This program ONLY gives a rough estimate of what the tool values should be, tweaking may be recommended for proper balance."
 puts "------------------------------"
 
-puts "Please input the harvest level"
-originalHarvestLevel = gets.chomp
-newHarvestLevel = originalHarvestLevel.to_i + 1
-
-puts "Please input the Max Uses"
-originalMaxUses = gets.chomp
-maxUses = originalMaxUses.to_i
-if maxUses <= 1499
-  newMaxUses = maxUses + 100
-end
-
-if maxUses >= 1500
-  newMaxUses = maxUses + 200
-end
-
-if maxUses >= 3000
-  newMaxUses = maxUses + 400
-end
-
-if maxUses >= 4500
-  newMaxUses = maxUses + 600
-end
-
-if maxUses >= 6000
-  newMaxUses = maxUses + 800
-end
-
-puts "Please input the Efficiency"
-originalEfficiency = gets.chomp
-efficiency = originalEfficiency.to_i
-if efficiency <= 5
-  newEfficiency = efficiency + 4
-end
-
-if efficiency >= 6
-  newEfficiency = efficiency + 2
-end
-
-if efficiency >= 10
-  newEfficiency = efficiency + 1
-end
-
-if efficiency >= 12
-  newEfficiency = efficiency + 2
-end
-
-if efficiency >= 14
-  newEfficiency = efficiency + 3
-end
-
-if efficiency >= 16
-  newEfficiency = efficiency + 4
-end
-
-puts "Please input the Damage"
-originalDamage = gets.chomp
-newDamage = originalDamage.to_i + 1
-
-puts "Please input the Enchantability"
-originalEnchantability = gets.chomp
-enchantability = originalEnchantability.to_i
-if enchantability <= 5
-  newEnchantability = enchantability + 2
-end
-
-if enchantability >= 11
-  newEnchantability = enchantability + 1
-end
-
-if enchantability >= 13
-  newEnchantability = enchantability
-end
-
-if enchantability >= 14
-  newEnchantability = enchantability + 1
-end
-
-if enchantability >= 16
-  newEnchantability = enchantability + 2
-end
-
-if enchantability >= 17
-  newEnchantability = enchantability + 3
-end
-
-if enchantability >= 19
-  newEnchantability = enchantability + 4
-end
-
-if enchantability >= 22
-  newEnchantability = enchantability + 5
-end
-
-if enchantability >= 26
-  newEnchantability = enchantability + 6
-end
-
-if enchantability >= 32
-  newEnchantability = enchantability + 7
-end
-
-if enchantability >= 38
-  newEnchantability = enchantability + 8
-end
-
-puts "Here are your recommended new values:"
-puts "------------------------------"
-puts "Harvest Level: #{newHarvestLevel}"
-puts "Max Uses: #{newMaxUses}"
-puts "Efficiency: #{newEfficiency}"
-puts "Damage: #{newDamage}"
-puts "Enchantability: #{newEnchantability}"
-puts "------------------------------"
-puts "Program over! Brush your teeth kids!"
+program = RioVCal.new()
