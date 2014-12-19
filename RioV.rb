@@ -43,11 +43,39 @@ class RioVCal
     @newMaxUses = @originalMaxUses.to_i * 1.15
     @newEfficiency = infusedFancyEfficiencyCalculation(@originalEfficentcy.to_i)
     @newDamage = @originalDamage + 1
-    #TODO: enchantablity
+    @newEnchantablity = infusedFancyEnchantablityCalculation(@originalEnchantablity.to_i)
   end
   
   def calculateEnhanced
     #TODO
+  end
+  
+  def infusedFancyEnchantablityCalculation(ench)
+    if ench <= 5
+      return ench + 2
+    elsif ench <= 11
+      return ench + 1
+    elsif ench <= 14
+      return ench
+    elsif ench <= 16
+      return ench + 1
+    elsif ench <= 17
+      return ench + 2
+    elsif ench <= 19
+      return ench + 3
+    elsif ench <= 22
+      return ench + 4
+    elsif ench <= 26
+      return ench + 5
+    elsif ench <= 32
+      return ench + 6
+    elsif ench <= 38
+      return ench + 7
+    elsif ench <= 46
+      return ench + 8
+    else
+      return ench + 9
+    end
   end
   
   def infuserFancyEfficiencyCalculation(eff)
