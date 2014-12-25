@@ -47,7 +47,17 @@ class RioVCal
   end
   
   def calculateEnhanced
+    @newHarvestLevel = @originalHarvestLevel.to_i
+    @newEnchantablity = enhancedFancyMaxUses(@originalEnchantablity.to_i)
     #TODO
+  end
+  
+  def enhancedFancyMaxUses(mx)
+    if mx <= 3000
+      return mx
+    else
+      return 2500 #Ask sheen
+    end
   end
   
   def infusedFancyEnchantablityCalculation(ench)
@@ -111,7 +121,8 @@ end
 
 puts "https://github.com/xbony2/RioVInfusionCal"
 puts "Hello! This is a tool for calculating RioV tool values based on it's normal tool values!" 
-puts "This program ONLY gives a rough estimate of what the tool values should be, tweaking may be recommended for proper balance."
+puts "This program ONLY gives a rough estimate of what the tool values should be."
+puts "Tweaking is highly recommended for proper balance."
 puts "------------------------------"
 
 program = RioVCal.new()
