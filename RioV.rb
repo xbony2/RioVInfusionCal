@@ -48,8 +48,10 @@ class RioVCal
   
   def calculateEnhanced
     @newHarvestLevel = @originalHarvestLevel.to_i
+    @newMaxUses
+    @newEfficiency
+    @newDamage
     @newEnchantablity = enhancedFancyMaxUses(@originalEnchantablity.to_i)
-    #TODO
   end
   
   def enhancedFancyMaxUses(mx)
